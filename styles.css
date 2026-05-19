@@ -466,7 +466,7 @@ section[id] {
   50%       { opacity: 0.3; transform: translateY(5px); }
 }
 
-/* ─── INTRO BAND ──────────────────────────────────────── */
+/* ─── BAND (shared grid utility) ─────────────────────── */
 .band {
   align-items: start;
   display: grid;
@@ -475,23 +475,108 @@ section[id] {
   padding: var(--section-y) var(--page-x);
 }
 
-.intro h2 {
+/* ─── INTRO SECTION ───────────────────────────────────── */
+.intro {
+  padding: var(--section-y) 0 0; /* no horizontal padding — inner handles it */
+}
+
+.intro-inner {
+  align-items: center;
+  display: grid;
+  gap: var(--section-gap);
+  grid-template-columns: minmax(0, 1fr) minmax(0, 0.85fr);
+  padding: 0 var(--page-x);
+}
+
+.intro-copy {
+  align-self: center;
+  display: flex;
+  flex-direction: column;
+}
+
+/* Override global .eyebrow margin — flex stack uses explicit margins instead */
+.intro-copy .eyebrow {
+  margin-bottom: var(--sp-5); /* 24px */
+}
+
+.intro-copy h2 {
   font-family: var(--serif);
   font-size: clamp(2.8rem, 5vw, 5rem);
   font-weight: 600;
   letter-spacing: -0.02em;
   line-height: 0.94;
-  margin: 0;
+  margin: 0 0 var(--sp-6); /* 32px below heading */
   max-width: 14ch;
 }
 
-.intro p:last-child {
-  align-self: end;
+.intro-body {
   color: var(--smoke);
-  font-size: clamp(1rem, 1.8vw, 1.18rem);
+  font-size: clamp(1rem, 1.8vw, 1.15rem);
   line-height: 1.85;
-  margin: 0;       /* grid gap handles spacing — no top margin needed */
-  max-width: 42ch;
+  margin: 0 0 var(--sp-8); /* 72px before CTA — gives breathing room */
+  max-width: 40ch;
+}
+
+.intro-media {
+  height: clamp(30rem, 70vh, 52rem);
+  overflow: hidden;
+  position: relative;
+}
+
+.intro-media img {
+  height: 100%;
+  object-fit: cover;
+  object-position: center 10%;
+  transition: transform 700ms cubic-bezier(0.16, 1, 0.3, 1);
+  width: 100%;
+}
+
+.intro-media:hover img {
+  transform: scale(1.03);
+}
+
+/* Product tease strip */
+.intro-strip {
+  border-top: 1px solid var(--line);
+  display: grid;
+  gap: 0;
+  grid-template-columns: repeat(3, 1fr);
+  margin-top: var(--sp-9);
+}
+
+.intro-strip-item {
+  border-right: 1px solid var(--line);
+  overflow: hidden;
+  position: relative;
+}
+
+.intro-strip-item:last-child {
+  border-right: none;
+}
+
+.intro-strip-item img {
+  aspect-ratio: 4 / 3;
+  display: block;
+  object-fit: cover;
+  object-position: center 20%;
+  transition: transform 600ms cubic-bezier(0.16, 1, 0.3, 1);
+  width: 100%;
+}
+
+.intro-strip-item:hover img {
+  transform: scale(1.04);
+}
+
+.intro-strip-item p {
+  background: var(--paper);
+  border-top: 1px solid var(--line);
+  color: var(--smoke);
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  margin: 0;
+  padding: var(--sp-4) var(--sp-5);
+  text-transform: uppercase;
 }
 
 /* ─── FEATURE SPLIT ───────────────────────────────────── */
@@ -566,9 +651,10 @@ section[id] {
 /* ─── PRODUCT GRID ────────────────────────────────────── */
 .collection-header {
   align-items: baseline;
+  border-top: 1px solid var(--line);
   display: flex;
   justify-content: space-between;
-  padding: var(--section-y) var(--page-x) 0;
+  padding: var(--sp-8) var(--page-x) 0;
 }
 
 .collection-header h2 {
@@ -1152,6 +1238,20 @@ details p {
     grid-template-columns: 1fr;
   }
 
+  /* Intro section */
+  .intro-inner {
+    grid-template-columns: 1fr;
+  }
+
+  .intro-media {
+    height: clamp(22rem, 65vw, 34rem);
+    order: -1; /* image above text on mobile */
+  }
+
+  .intro-strip {
+    grid-template-columns: repeat(3, 1fr);
+  }
+
   .feature-split {
     display: flex;
     flex-direction: column-reverse;
@@ -1251,6 +1351,19 @@ details p {
   .product-grid {
     gap: var(--sp-6);
     grid-template-columns: 1fr;
+  }
+
+  .intro-strip {
+    grid-template-columns: 1fr;
+  }
+
+  .intro-strip-item {
+    border-right: none;
+    border-bottom: 1px solid var(--line);
+  }
+
+  .intro-strip-item:last-child {
+    border-bottom: none;
   }
 
   .purchase-row {
