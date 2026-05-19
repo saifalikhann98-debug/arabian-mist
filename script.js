@@ -21,7 +21,7 @@ const toast           = document.querySelector("[data-toast]");
 const navLinks        = document.querySelectorAll(".nav-links a[href^='#']");
 
 /* ─── CONFIG ───────────────────────────────────────────── */
-const BUSINESS_WHATSAPP = "971XXXXXXXXX"; // replace with live number
+const BUSINESS_WHATSAPP = "971544224930";
 const PAGE_SIZE = 6;
 
 /* ─── STATE ────────────────────────────────────────────── */
