@@ -1,63 +1,295 @@
-const header = document.querySelector("[data-header]");
-const menuButton = document.querySelector("[data-menu]");
-const nav = document.querySelector("[data-nav]");
-const revealItems = document.querySelectorAll(".reveal");
-const parallaxImage = document.querySelector("[data-parallax]");
-const qtyValue = document.querySelector("[data-qty]");
-const minusButton = document.querySelector("[data-qty-minus]");
-const plusButton = document.querySelector("[data-qty-plus]");
-const noteCopy = document.querySelector("[data-note-copy]");
-const accordButtons = document.querySelectorAll(".accord");
-const productCards = document.querySelectorAll(".product-card");
-const productTitle = document.querySelector("[data-product-title]");
-const productPrice = document.querySelector("[data-product-price]");
-const productDescription = document.querySelector("[data-product-description]");
-const addButton = document.querySelector("[data-add]");
-const toast = document.querySelector("[data-toast]");
+/* Arabian Mist UAE — script.js v3 */
 
-const notes = {
-  incense: "Frankincense and bakhoor smoke give the opening a mineral glow before the mist settles on skin.",
-  iris: "Powdered orris adds a cream-soft elegance, keeping the perfume refined rather than heavy.",
-  musk: "White musk warms the drydown with a close, clean trail that lasts through the evening.",
-};
+/* ─── DOM REFS ─────────────────────────────────────────── */
+const header          = document.querySelector("[data-header]");
+const menuButton      = document.querySelector("[data-menu]");
+const nav             = document.querySelector("[data-nav]");
+const parallaxImage   = document.querySelector("[data-parallax]");
+const galleryImage    = document.querySelector("[data-gallery-image]");
+const qtyValue        = document.querySelector("[data-qty]");
+const minusButton     = document.querySelector("[data-qty-minus]");
+const plusButton      = document.querySelector("[data-qty-plus]");
+const noteCopy        = document.querySelector("[data-note-copy]");
+const accordButtons   = document.querySelectorAll(".accord");
+const productGrid     = document.querySelector("[data-product-grid]");
+const collectionCount = document.querySelector("[data-collection-count]");
+const productTitle    = document.querySelector("[data-product-title]");
+const productPrice    = document.querySelector("[data-product-price]");
+const productDesc     = document.querySelector("[data-product-description]");
+const buyButton       = document.querySelector("[data-buy]");
+const toast           = document.querySelector("[data-toast]");
+const navLinks        = document.querySelectorAll(".nav-links a[href^='#']");
 
-const observer = new IntersectionObserver(
+/* ─── CONFIG ───────────────────────────────────────────── */
+const BUSINESS_WHATSAPP = "971XXXXXXXXX"; // replace with live number
+const PAGE_SIZE = 6;
+
+/* ─── STATE ────────────────────────────────────────────── */
+let quantity        = 1;
+let currentPage     = 1;
+let selectedProduct = PRODUCTS.find((p) => p.id === "arabian-nights") || PRODUCTS[0];
+
+/* ─── REDUCED MOTION ────────────────────────────────────── */
+const reducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+
+/* ─────────────────────────────────────────────────────────
+   SCROLL REVEAL
+───────────────────────────────────────────────────────── */
+const revealObserver = new IntersectionObserver(
   (entries) => {
     entries.forEach((entry) => {
       if (entry.isIntersecting) {
         entry.target.classList.add("is-visible");
-        observer.unobserve(entry.target);
+        revealObserver.unobserve(entry.target);
       }
     });
   },
-  { threshold: 0.18 }
+  { threshold: 0.12 }
 );
 
-revealItems.forEach((item, index) => {
-  item.style.transitionDelay = `${Math.min(index * 70, 280)}ms`;
-  observer.observe(item);
-});
+const observeRevealItems = () => {
+  document.querySelectorAll(".reveal:not(.is-visible)").forEach((item, i) => {
+    item.style.transitionDelay = reducedMotion ? "0ms" : `${Math.min(i * 60, 240)}ms`;
+    revealObserver.observe(item);
+  });
+};
 
-window.addEventListener("scroll", () => {
-  header.classList.toggle("is-scrolled", window.scrollY > 12);
+/* ─────────────────────────────────────────────────────────
+   SCROLLSPY — sets aria-current="page" on active nav link
+   Uses rootMargin to fire when section crosses ~30% from top
+───────────────────────────────────────────────────────── */
+const scrollspy = () => {
+  const sections = document.querySelectorAll("section[id], main[id]");
 
-  if (parallaxImage) {
-    const rect = parallaxImage.getBoundingClientRect();
-    const progress = (window.innerHeight - rect.top) / (window.innerHeight + rect.height);
-    const shift = Math.max(-22, Math.min(22, (progress - 0.5) * 44));
-    parallaxImage.style.setProperty("--shift", `${shift}px`);
+  const spyObserver = new IntersectionObserver(
+    (entries) => {
+      entries.forEach((entry) => {
+        if (!entry.isIntersecting) return;
+        const id = entry.target.id;
+        navLinks.forEach((link) => {
+          const isActive = link.getAttribute("href") === `#${id}`;
+          link.toggleAttribute("aria-current", isActive);
+          if (isActive) link.setAttribute("aria-current", "page");
+          else link.removeAttribute("aria-current");
+        });
+      });
+    },
+    { rootMargin: "-28% 0px -65% 0px", threshold: 0 }
+  );
+
+  sections.forEach((s) => spyObserver.observe(s));
+};
+
+/* ─────────────────────────────────────────────────────────
+   PRODUCT RENDERING
+───────────────────────────────────────────────────────── */
+const renderProductCard = (product) => {
+  const notes = product.notes.join(", ");
+  return `
+    <article
+      class="product-card reveal"
+      data-product-id="${product.id}"
+      tabindex="0"
+      aria-label="View ${product.name}, ${product.price}"
+    >
+      <div class="product-thumb">
+        <img
+          src="${product.image}"
+          alt="${product.name} fragrance by Arabian Mist"
+          loading="lazy"
+          width="600"
+          height="800"
+        />
+      </div>
+      <div class="product-card-content">
+        <p>${product.name}</p>
+        <span>${notes}</span>
+        <strong>${product.price}</strong>
+      </div>
+      <button
+        class="product-buy"
+        type="button"
+        data-product-buy="${product.id}"
+        aria-label="Buy ${product.name} on WhatsApp"
+      >Buy on WhatsApp</button>
+    </article>
+  `;
+};
+
+const renderProducts = (page = 1) => {
+  const end      = page * PAGE_SIZE;
+  const visible  = PRODUCTS.slice(0, end);
+  const hasMore  = end < PRODUCTS.length;
+  const remaining = PRODUCTS.length - end;
+
+  const cards = visible.map(renderProductCard).join("");
+  const loadMore = hasMore
+    ? `<div class="product-grid-footer">
+         <button class="load-more-btn" type="button" data-load-more>
+           Load more — ${remaining} remaining
+         </button>
+       </div>`
+    : "";
+
+  productGrid.innerHTML = cards + loadMore;
+
+  // Update collection count display
+  if (collectionCount) {
+    collectionCount.textContent = `${PRODUCTS.length} fragrances`;
   }
+
+  // Observe new cards for reveal
+  observeRevealItems();
+
+  // Reattach load-more listener
+  const btn = productGrid.querySelector("[data-load-more]");
+  if (btn) {
+    btn.addEventListener("click", () => {
+      currentPage += 1;
+      renderProducts(currentPage);
+      // Focus first new card for keyboard continuity
+      const cards = productGrid.querySelectorAll(".product-card");
+      const firstNew = cards[(currentPage - 1) * PAGE_SIZE];
+      if (firstNew) firstNew.focus();
+    });
+  }
+};
+
+/* ─────────────────────────────────────────────────────────
+   ACCORD LOGIC
+───────────────────────────────────────────────────────── */
+const setActiveAccord = (key = "top") => {
+  accordButtons.forEach((btn) => {
+    const active = btn.dataset.note === key;
+    btn.classList.toggle("active", active);
+    btn.setAttribute("aria-pressed", String(active));
+  });
+  if (noteCopy && selectedProduct.accords[key]) {
+    noteCopy.textContent = selectedProduct.accords[key];
+  }
+};
+
+/* ─────────────────────────────────────────────────────────
+   PRODUCT SELECTION
+───────────────────────────────────────────────────────── */
+const selectProduct = (product, shouldScroll = true) => {
+  selectedProduct = product;
+  if (productTitle) productTitle.textContent = product.name;
+  if (productPrice) productPrice.textContent = product.price;
+  if (productDesc)  productDesc.textContent  = product.description;
+
+  // Swap gallery image
+  if (galleryImage) {
+    galleryImage.src = product.image;
+    galleryImage.alt = `${product.name} by Arabian Mist`;
+  }
+
+  // Update detail eyebrow to reflect product
+  const eyebrow = document.querySelector(".detail-info .eyebrow");
+  if (eyebrow) eyebrow.textContent = `Eau de parfum · ${product.size}`;
+
+  setActiveAccord("top");
+
+  if (shouldScroll) {
+    document.querySelector("#details")?.scrollIntoView({
+      behavior: reducedMotion ? "auto" : "smooth",
+      block: "start",
+    });
+  }
+};
+
+/* ─────────────────────────────────────────────────────────
+   WHATSAPP
+───────────────────────────────────────────────────────── */
+const whatsAppUrl = (product) => {
+  const msg = [
+    "Hi Arabian Mist,",
+    `I'd like to order: ${product.name}`,
+    `Code: ${product.code}`,
+    `Size: ${product.size}`,
+    `Price: ${product.price}`,
+    `Quantity: ${quantity}`,
+  ].join("\n");
+  return `https://wa.me/${BUSINESS_WHATSAPP}?text=${encodeURIComponent(msg)}`;
+};
+
+/* ─────────────────────────────────────────────────────────
+   TOAST
+───────────────────────────────────────────────────────── */
+let toastTimer;
+const showToast = (msg) => {
+  toast.textContent = msg;
+  toast.classList.add("is-visible");
+  clearTimeout(toastTimer);
+  toastTimer = setTimeout(() => toast.classList.remove("is-visible"), 2600);
+};
+
+/* ─────────────────────────────────────────────────────────
+   MOBILE NAV HELPERS
+───────────────────────────────────────────────────────── */
+const closeNav = (returnFocus = false) => {
+  nav.classList.remove("is-open");
+  menuButton.setAttribute("aria-expanded", "false");
+  menuButton.setAttribute("aria-label", "Open menu");
+  if (returnFocus) menuButton.focus();
+};
+
+const openNav = () => {
+  nav.classList.add("is-open");
+  menuButton.setAttribute("aria-expanded", "true");
+  menuButton.setAttribute("aria-label", "Close menu");
+};
+
+/* ─────────────────────────────────────────────────────────
+   INITIALISE
+───────────────────────────────────────────────────────── */
+renderProducts(currentPage);
+selectProduct(selectedProduct, false);
+observeRevealItems();
+scrollspy();
+
+/* ─────────────────────────────────────────────────────────
+   EVENTS — Product grid
+───────────────────────────────────────────────────────── */
+productGrid.addEventListener("click", (e) => {
+  // Buy button
+  const buyTarget = e.target.closest("[data-product-buy]");
+  if (buyTarget) {
+    const p = PRODUCTS.find((x) => x.id === buyTarget.dataset.productBuy);
+    if (!p) return;
+    selectProduct(p, false);
+    showToast(`Opening WhatsApp for ${p.name}`);
+    setTimeout(() => { window.location.href = whatsAppUrl(p); }, 480);
+    return;
+  }
+  // Card click → scroll to detail
+  const card = e.target.closest(".product-card");
+  if (!card) return;
+  const p = PRODUCTS.find((x) => x.id === card.dataset.productId);
+  if (p) selectProduct(p);
 });
 
-menuButton.addEventListener("click", () => {
-  nav.classList.toggle("is-open");
+productGrid.addEventListener("keydown", (e) => {
+  if (e.target.closest("button")) return;
+  if (e.key !== "Enter" && e.key !== " ") return;
+  const card = e.target.closest(".product-card");
+  if (!card) return;
+  e.preventDefault();
+  const p = PRODUCTS.find((x) => x.id === card.dataset.productId);
+  if (p) selectProduct(p);
 });
 
-nav.querySelectorAll("a").forEach((link) => {
-  link.addEventListener("click", () => nav.classList.remove("is-open"));
+/* ─────────────────────────────────────────────────────────
+   EVENTS — Detail section
+───────────────────────────────────────────────────────── */
+buyButton.addEventListener("click", () => {
+  showToast(`Opening WhatsApp — ${quantity} × ${selectedProduct.name}`);
+  setTimeout(() => { window.location.href = whatsAppUrl(selectedProduct); }, 480);
 });
 
-let quantity = 1;
+accordButtons.forEach((btn) => {
+  btn.addEventListener("click", () => setActiveAccord(btn.dataset.note));
+});
 
 minusButton.addEventListener("click", () => {
   quantity = Math.max(1, quantity - 1);
@@ -69,33 +301,51 @@ plusButton.addEventListener("click", () => {
   qtyValue.textContent = quantity;
 });
 
-accordButtons.forEach((button) => {
-  button.addEventListener("click", () => {
-    accordButtons.forEach((item) => item.classList.remove("active"));
-    button.classList.add("active");
-    noteCopy.textContent = notes[button.dataset.note];
-  });
+/* ─────────────────────────────────────────────────────────
+   EVENTS — Mobile nav
+───────────────────────────────────────────────────────── */
+menuButton.addEventListener("click", () => {
+  nav.classList.contains("is-open") ? closeNav() : openNav();
 });
 
-productCards.forEach((card) => {
-  const selectProduct = () => {
-    productTitle.textContent = card.dataset.product;
-    productPrice.textContent = card.dataset.price;
-    productDescription.textContent = card.dataset.description;
-    document.querySelector("#details").scrollIntoView({ behavior: "smooth", block: "start" });
-  };
+// Close on nav link click
+nav.querySelectorAll("a").forEach((link) => {
+  link.addEventListener("click", () => closeNav());
+});
 
-  card.addEventListener("click", selectProduct);
-  card.addEventListener("keydown", (event) => {
-    if (event.key === "Enter" || event.key === " ") {
-      event.preventDefault();
-      selectProduct();
+// Close on Escape key (return focus to burger)
+document.addEventListener("keydown", (e) => {
+  if (e.key === "Escape" && nav.classList.contains("is-open")) {
+    closeNav(true);
+  }
+});
+
+// Close on outside click
+document.addEventListener("click", (e) => {
+  if (
+    nav.classList.contains("is-open") &&
+    !nav.contains(e.target) &&
+    !menuButton.contains(e.target)
+  ) {
+    closeNav();
+  }
+});
+
+/* ─────────────────────────────────────────────────────────
+   EVENTS — Scroll
+───────────────────────────────────────────────────────── */
+window.addEventListener(
+  "scroll",
+  () => {
+    header.classList.toggle("is-scrolled", window.scrollY > 12);
+
+    if (parallaxImage && !reducedMotion) {
+      const rect = parallaxImage.getBoundingClientRect();
+      const progress =
+        (window.innerHeight - rect.top) / (window.innerHeight + rect.height);
+      const shift = Math.max(-22, Math.min(22, (progress - 0.5) * 44));
+      parallaxImage.style.setProperty("--shift", `${shift}px`);
     }
-  });
-});
-
-addButton.addEventListener("click", () => {
-  toast.textContent = `${quantity} × ${productTitle.textContent} added to bag`;
-  toast.classList.add("is-visible");
-  window.setTimeout(() => toast.classList.remove("is-visible"), 2200);
-});
+  },
+  { passive: true }
+);
