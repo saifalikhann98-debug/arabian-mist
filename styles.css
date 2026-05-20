@@ -333,16 +333,17 @@ section[id] {
 
 .hero-image {
   animation: heroZoom 1600ms cubic-bezier(0.16, 1, 0.3, 1) forwards;
-  /* Physically constrain image to right 58% of viewport so bottles
-     never enter the text zone — gradient covers the empty left strip */
+  /* Constrain image to right 50% of viewport so bottles never enter the
+     text zone. object-position pushed to 70% so the bottle group sits
+     to the right within its frame, leaving a clean left edge to fade. */
   height: 100%;
-  left: 42%;
+  left: 50%;
   object-fit: cover;
-  object-position: center 35%;
+  object-position: 70% 40%;
   position: absolute;
   top: 0;
   transform: scale(1.04);
-  width: 58%;
+  width: 50%;
 }
 
 @keyframes heroZoom {
@@ -351,14 +352,13 @@ section[id] {
 
 .hero-shade {
   background:
-    /* Left dark — text zone; image starts at 42% so gradient fades naturally into it */
     linear-gradient(
       100deg,
       rgba(5, 3, 2, 0.98) 0%,
-      rgba(5, 3, 2, 0.95) 30%,
-      rgba(5, 3, 2, 0.80) 44%,
-      rgba(5, 3, 2, 0.30) 56%,
-      transparent 68%
+      rgba(5, 3, 2, 0.96) 40%,
+      rgba(5, 3, 2, 0.86) 50%,
+      rgba(5, 3, 2, 0.35) 62%,
+      transparent 74%
     ),
     /* Bottom dark strip — feature bar + scroll cue readability */
     linear-gradient(
@@ -379,8 +379,8 @@ section[id] {
 
 .hero-content {
   color: #fff8ec;
-  max-width: 54rem;
-  /* bottom padding clears scroll-cue + hero-features (≈ 5.5rem + 1.5rem gap) */
+  /* Copy column cannot enter image zone */
+  max-width: min(46rem, 48vw);
   padding: 0 var(--page-x) clamp(8rem, 12vw, 11rem);
   position: relative;
   width: 100%;
@@ -401,12 +401,12 @@ section[id] {
 .hero h1 {
   animation: heroReveal 700ms cubic-bezier(0.16, 1, 0.3, 1) 450ms forwards;
   font-family: var(--serif);
-  font-size: clamp(3.2rem, 6.5vw, 7rem); /* was 9.5rem — at 1440px ≈ 5.85rem (93px) */
+  font-size: clamp(3rem, 5.6vw, 6rem);
   font-weight: 600;
   letter-spacing: -0.025em;
-  line-height: 0.92;
+  line-height: 0.96;
   margin: 0 0 var(--sp-6);
-  max-width: none; /* was 12ch — was causing premature wrapping */
+  max-width: 14ch;
   opacity: 0;
 }
 
@@ -1368,6 +1368,14 @@ details p {
     min-height: 46rem;
   }
 
+  /* Mobile: image goes full-bleed again so all bottles are visible;
+     a vertical gradient handles text legibility */
+  .hero-image {
+    left: 0;
+    width: 100%;
+    object-position: center 38%;
+  }
+
   .hero-shade {
     background: linear-gradient(180deg, rgba(5, 3, 2, 0.35) 0%, rgba(5, 3, 2, 0.0) 25%,
                 rgba(5, 3, 2, 0.55) 75%, rgba(5, 3, 2, 0.88) 100%);
@@ -1375,10 +1383,12 @@ details p {
 
   .hero h1 {
     font-size: clamp(2.8rem, 8vw, 5rem); /* was 18vw — absurdly large on tablet */
+    max-width: none;
   }
 
   .hero-content {
-    padding-bottom: 7rem; /* tighter on mobile — feature strip is 2-col */
+    max-width: none; /* let copy span full width on tablet/mobile */
+    padding-bottom: 7rem;
   }
 
   .scroll-cue {
