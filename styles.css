@@ -348,15 +348,14 @@ section[id] {
 
 .hero-shade {
   background:
-    /* Left mask — solid dark for text zone, dissolves into image at center */
+    /* Left mask — fully opaque through the copy column, clean dissolve into bottles */
     linear-gradient(
       to right,
       rgba(5, 3, 2, 1.00)  0%,
-      rgba(5, 3, 2, 1.00) 28%,
-      rgba(5, 3, 2, 0.95) 38%,
-      rgba(5, 3, 2, 0.72) 46%,
-      rgba(5, 3, 2, 0.28) 56%,
-      rgba(5, 3, 2, 0.04) 66%,
+      rgba(5, 3, 2, 1.00) 42%,
+      rgba(5, 3, 2, 0.85) 50%,
+      rgba(5, 3, 2, 0.40) 58%,
+      rgba(5, 3, 2, 0.06) 66%,
       transparent         74%
     ),
     /* Bottom strip — feature bar readability */
@@ -378,8 +377,8 @@ section[id] {
 
 .hero-content {
   color: #fff8ec;
-  /* Copy column cannot enter image zone */
-  max-width: min(46rem, 48vw);
+  /* Copy column stays within the opaque gradient zone (< 42vw) */
+  max-width: min(42rem, 40vw);
   padding: 0 var(--page-x) clamp(8rem, 12vw, 11rem);
   position: relative;
   width: 100%;
