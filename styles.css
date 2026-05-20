@@ -334,12 +334,12 @@ section[id] {
 .hero-image {
   animation: heroZoom 1600ms cubic-bezier(0.16, 1, 0.3, 1) forwards;
   /* Constrain image to right 50% of viewport so bottles never enter the
-     text zone. object-position pushed to 70% so the bottle group sits
+     text zone. object-position pushed to 82% so the bottle group sits
      to the right within its frame, leaving a clean left edge to fade. */
   height: 100%;
   left: 50%;
   object-fit: cover;
-  object-position: 70% 40%;
+  object-position: 82% 40%;
   position: absolute;
   top: 0;
   transform: scale(1.04);
