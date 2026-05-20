@@ -333,11 +333,11 @@ section[id] {
 
 .hero-image {
   animation: heroZoom 1600ms cubic-bezier(0.16, 1, 0.3, 1) forwards;
-  /* Full-width reference composition; crop is pushed right so the bottle
-     cluster sits beside the copy instead of underneath it. */
+  /* Full-width reference composition; the gradient does the masking
+     while the bottle group sits center-right like the supplied hero. */
   height: 100%;
   object-fit: cover;
-  object-position: 74% 35%;
+  object-position: 62% 35%;
   transform: scale(1.04);
   width: 100%;
 }
@@ -348,16 +348,16 @@ section[id] {
 
 .hero-shade {
   background:
-    /* Left mask — protects the copy zone, then dissolves into the bottle image */
+    /* Left mask — solid dark for text zone, dissolves into image at center */
     linear-gradient(
       to right,
       rgba(5, 3, 2, 1.00)  0%,
-      rgba(5, 3, 2, 1.00) 34%,
-      rgba(5, 3, 2, 0.96) 44%,
-      rgba(5, 3, 2, 0.78) 52%,
-      rgba(5, 3, 2, 0.34) 62%,
-      rgba(5, 3, 2, 0.06) 70%,
-      transparent         78%
+      rgba(5, 3, 2, 1.00) 28%,
+      rgba(5, 3, 2, 0.95) 38%,
+      rgba(5, 3, 2, 0.72) 46%,
+      rgba(5, 3, 2, 0.28) 56%,
+      rgba(5, 3, 2, 0.04) 66%,
+      transparent         74%
     ),
     /* Bottom strip — feature bar readability */
     linear-gradient(
