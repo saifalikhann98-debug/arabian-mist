@@ -320,7 +320,8 @@ section[id] {
 .hero {
   align-items: flex-end;
   display: flex;
-  min-height: calc(100svh - 2.2rem); /* subtract notice bar */
+  margin-top: calc(-1 * var(--header-h)); /* pull hero up behind the sticky header */
+  min-height: calc(100svh - 2.2rem);
   overflow: hidden;
   position: relative;
 }

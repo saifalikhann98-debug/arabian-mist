@@ -332,13 +332,26 @@ document.addEventListener("click", (e) => {
 });
 
 /* ─────────────────────────────────────────────────────────
-   EVENTS — Scroll
+   HEADER STATE — transparent on hero, cream once hero scrolls out
+   Uses IntersectionObserver instead of scrollY threshold so the
+   header only turns cream when the hero is actually out of view.
+───────────────────────────────────────────────────────── */
+const heroSection = document.querySelector(".hero");
+if (heroSection) {
+  new IntersectionObserver(
+    ([entry]) => {
+      header.classList.toggle("is-scrolled", !entry.isIntersecting);
+    },
+    { threshold: 0.08 } /* triggers when <8% of hero remains visible */
+  ).observe(heroSection);
+}
+
+/* ─────────────────────────────────────────────────────────
+   EVENTS — Scroll (parallax only — header state handled above)
 ───────────────────────────────────────────────────────── */
 window.addEventListener(
   "scroll",
   () => {
-    header.classList.toggle("is-scrolled", window.scrollY > 12);
-
     if (parallaxImage && !reducedMotion) {
       const rect = parallaxImage.getBoundingClientRect();
       const progress =
