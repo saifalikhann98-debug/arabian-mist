@@ -333,11 +333,16 @@ section[id] {
 
 .hero-image {
   animation: heroZoom 1600ms cubic-bezier(0.16, 1, 0.3, 1) forwards;
+  /* Physically constrain image to right 58% of viewport so bottles
+     never enter the text zone — gradient covers the empty left strip */
   height: 100%;
+  left: 42%;
   object-fit: cover;
-  object-position: 90% 35%; /* shift bottles to far right, clear of text zone */
+  object-position: center 35%;
+  position: absolute;
+  top: 0;
   transform: scale(1.04);
-  width: 100%;
+  width: 58%;
 }
 
 @keyframes heroZoom {
@@ -346,15 +351,14 @@ section[id] {
 
 .hero-shade {
   background:
-    /* Left dark — covers text zone + kills any bottle bleed into copy area */
+    /* Left dark — text zone; image starts at 42% so gradient fades naturally into it */
     linear-gradient(
       100deg,
-      rgba(5, 3, 2, 0.97) 0%,
-      rgba(5, 3, 2, 0.94) 26%,
-      rgba(5, 3, 2, 0.85) 42%,
-      rgba(5, 3, 2, 0.50) 54%,
-      rgba(5, 3, 2, 0.10) 64%,
-      transparent 74%
+      rgba(5, 3, 2, 0.98) 0%,
+      rgba(5, 3, 2, 0.95) 30%,
+      rgba(5, 3, 2, 0.80) 44%,
+      rgba(5, 3, 2, 0.30) 56%,
+      transparent 68%
     ),
     /* Bottom dark strip — feature bar + scroll cue readability */
     linear-gradient(
