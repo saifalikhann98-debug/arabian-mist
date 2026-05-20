@@ -333,17 +333,16 @@ section[id] {
 
 .hero-image {
   animation: heroZoom 1600ms cubic-bezier(0.16, 1, 0.3, 1) forwards;
-  /* Constrain image to right 50% of viewport so bottles never enter the
-     text zone. object-position pushed to 82% so the bottle group sits
-     to the right within its frame, leaving a clean left edge to fade. */
+  /* Frame starts near the headline and lets the bottle group sit center-right,
+     matching the editorial hero reference while keeping the copy on dark space. */
   height: 100%;
-  left: 50%;
+  left: 38%;
   object-fit: cover;
-  object-position: 82% 40%;
+  object-position: 56% 40%;
   position: absolute;
   top: 0;
   transform: scale(1.04);
-  width: 50%;
+  width: 62%;
 }
 
 @keyframes heroZoom {
@@ -355,10 +354,10 @@ section[id] {
     linear-gradient(
       100deg,
       rgba(5, 3, 2, 0.98) 0%,
-      rgba(5, 3, 2, 0.96) 40%,
-      rgba(5, 3, 2, 0.86) 50%,
-      rgba(5, 3, 2, 0.35) 62%,
-      transparent 74%
+      rgba(5, 3, 2, 0.96) 34%,
+      rgba(5, 3, 2, 0.84) 44%,
+      rgba(5, 3, 2, 0.36) 58%,
+      transparent 72%
     ),
     /* Bottom dark strip — feature bar + scroll cue readability */
     linear-gradient(
