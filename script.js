@@ -14,7 +14,6 @@ const accordButtons   = document.querySelectorAll(".accord");
 const productGrid     = document.querySelector("[data-product-grid]");
 const collectionCount = document.querySelector("[data-collection-count]");
 const productTitle    = document.querySelector("[data-product-title]");
-const productPrice    = document.querySelector("[data-product-price]");
 const productDesc     = document.querySelector("[data-product-description]");
 const buyButton       = document.querySelector("[data-buy]");
 const toast           = document.querySelector("[data-toast]");
@@ -90,7 +89,7 @@ const renderProductCard = (product) => {
       class="product-card reveal"
       data-product-id="${product.id}"
       tabindex="0"
-      aria-label="View ${product.name}, ${product.price}"
+      aria-label="View ${product.name}"
     >
       <div class="product-thumb">
         <img
@@ -104,7 +103,6 @@ const renderProductCard = (product) => {
       <div class="product-card-content">
         <p>${product.name}</p>
         <span>${notes}</span>
-        <strong>${product.price}</strong>
       </div>
       <button
         class="product-buy"
@@ -175,7 +173,6 @@ const setActiveAccord = (key = "top") => {
 const selectProduct = (product, shouldScroll = true) => {
   selectedProduct = product;
   if (productTitle) productTitle.textContent = product.name;
-  if (productPrice) productPrice.textContent = product.price;
   if (productDesc)  productDesc.textContent  = product.description;
 
   // Swap gallery image
@@ -207,7 +204,6 @@ const whatsAppUrl = (product) => {
     `I'd like to order: ${product.name}`,
     `Code: ${product.code}`,
     `Size: ${product.size}`,
-    `Price: ${product.price}`,
     `Quantity: ${quantity}`,
   ].join("\n");
   return `https://wa.me/${BUSINESS_WHATSAPP}?text=${encodeURIComponent(msg)}`;
