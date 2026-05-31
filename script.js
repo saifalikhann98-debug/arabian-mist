@@ -21,7 +21,7 @@ const navLinks        = document.querySelectorAll(".nav-links a[href^='#']");
 
 /* ─── CONFIG ───────────────────────────────────────────── */
 const BUSINESS_WHATSAPP = "971544224930";
-const PAGE_SIZE = 6;
+const PAGE_SIZE = 3;
 
 /* ─── STATE ────────────────────────────────────────────── */
 let quantity        = 1;
