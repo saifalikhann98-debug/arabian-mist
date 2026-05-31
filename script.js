@@ -115,10 +115,10 @@ const renderProductCard = (product) => {
 };
 
 const renderProducts = (page = 1) => {
-  const end      = page * PAGE_SIZE;
-  const visible  = PRODUCTS.slice(0, end);
-  const hasMore  = end < PRODUCTS.length;
-  const remaining = PRODUCTS.length - end;
+  // Homepage teaser: a curated trio (all fragrances live on /collection)
+  const FEATURED = ["arabian-nights", "blue-mist", "romanzia-mist"];
+  const visible  = FEATURED.map((id) => PRODUCTS.find((p) => p.id === id)).filter(Boolean);
+  const hasMore  = PRODUCTS.length > visible.length;
 
   const cards = visible.map(renderProductCard).join("");
   const loadMore = hasMore
