@@ -276,24 +276,27 @@ productGrid.addEventListener("keydown", (e) => {
 /* ─────────────────────────────────────────────────────────
    EVENTS — Detail section
 ───────────────────────────────────────────────────────── */
-buyButton.addEventListener("click", () => {
-  showToast(`Opening WhatsApp — ${quantity} × ${selectedProduct.name}`);
-  setTimeout(() => { window.location.href = whatsAppUrl(selectedProduct); }, 480);
-});
+/* Detail section was removed from the homepage; guard so these no-op if absent. */
+if (buyButton) {
+  buyButton.addEventListener("click", () => {
+    showToast(`Opening WhatsApp — ${quantity} × ${selectedProduct.name}`);
+    setTimeout(() => { window.location.href = whatsAppUrl(selectedProduct); }, 480);
+  });
 
-accordButtons.forEach((btn) => {
-  btn.addEventListener("click", () => setActiveAccord(btn.dataset.note));
-});
+  accordButtons.forEach((btn) => {
+    btn.addEventListener("click", () => setActiveAccord(btn.dataset.note));
+  });
 
-minusButton.addEventListener("click", () => {
-  quantity = Math.max(1, quantity - 1);
-  qtyValue.textContent = quantity;
-});
+  minusButton.addEventListener("click", () => {
+    quantity = Math.max(1, quantity - 1);
+    qtyValue.textContent = quantity;
+  });
 
-plusButton.addEventListener("click", () => {
-  quantity = Math.min(9, quantity + 1);
-  qtyValue.textContent = quantity;
-});
+  plusButton.addEventListener("click", () => {
+    quantity = Math.min(9, quantity + 1);
+    qtyValue.textContent = quantity;
+  });
+}
 
 /* ─────────────────────────────────────────────────────────
    EVENTS — Mobile nav
