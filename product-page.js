@@ -36,9 +36,11 @@ const BUSINESS_WHATSAPP = '971544224930'; // <-- store WhatsApp number (digits o
     ph.innerHTML = '<span>' + esc(fb) + '</span>';
     if (img.parentNode) img.parentNode.replaceChild(ph, img);
   };
+  /* root-absolute URL for site assets so paths resolve under /products/<slug> */
+  const absUrl = (u) => /^(https?:|\/)/.test(u) ? u : '/' + u;
   const imgTag = (src, alt, fallback, cls, id) =>
     '<img' + (id ? ' id="' + id + '"' : '') + (cls ? ' class="' + cls + '"' : '') +
-    ' src="' + esc(src) + '" alt="' + esc(alt) + '" loading="lazy"' +
+    ' src="' + esc(absUrl(src)) + '" alt="' + esc(alt) + '" loading="lazy"' +
     ' data-fallback="' + esc(fallback || 'AM') + '" onerror="amImgFail(this)">';
 
   const stars = (v) => [1, 2, 3, 4, 5].map((i) => ICON.star(i <= Math.round(v))).join('');
@@ -86,8 +88,8 @@ const BUSINESS_WHATSAPP = '971544224930'; // <-- store WhatsApp number (digits o
   const crumbs = $('#crumbs');
   if (crumbs) {
     crumbs.innerHTML =
-      '<a href="index.html">Home</a><span>/</span>' +
-      '<a href="index.html#collection">Collection</a><span>/</span>' + esc(P.name);
+      '<a href="/index.html">Home</a><span>/</span>' +
+      '<a href="/index.html#collection">Collection</a><span>/</span>' + esc(P.name);
   }
 
   /* ---------- state ---------- */
@@ -278,7 +280,7 @@ const BUSINESS_WHATSAPP = '971544224930'; // <-- store WhatsApp number (digits o
     '<div class="wrap">' +
       '<div class="related__top">' +
         '<div><div class="eyebrow">The signature trio</div><h2>You may also like</h2></div>' +
-        '<a class="related__link" href="index.html#collection">View the collection →</a>' +
+        '<a class="related__link" href="/index.html#collection">View the collection →</a>' +
       '</div>' +
       '<div class="cards" id="relatedCards">' +
         P.related.map((r) =>

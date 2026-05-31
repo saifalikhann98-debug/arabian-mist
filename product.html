@@ -17,14 +17,17 @@
       • Product data source:    data/pdp-content.js → toPdpProduct()
                                 (swap for a backend/CMS fetch later)
       • URL:  /products/<slug>  (Vercel rewrite) or ?slug=<slug> (local)
-      See PDP_NOTES.md for details.
+
+      NOTE: asset paths are ROOT-ABSOLUTE (/product.css, /assets/…) so
+      they resolve correctly under the nested /products/<slug> URL.
+      See PDP_NOTES.md.
       ============================================================
     -->
 
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600;700&family=Jost:wght@300;400;500;600&display=swap" rel="stylesheet" />
-    <link rel="stylesheet" href="product.css?v=1" />
+    <link rel="stylesheet" href="/product.css?v=2" />
   </head>
   <body>
     <a class="skip-link" href="#pdp">Skip to product</a>
@@ -33,15 +36,15 @@
 
     <header class="header">
       <div class="wrap header__inner">
-        <a class="logo" href="index.html" aria-label="Arabian Mist UAE — home">
+        <a class="logo" href="/index.html" aria-label="Arabian Mist UAE — home">
           <div class="logo__mark" aria-hidden="true">AM</div>
           <div class="logo__name">Arabian Mist<small>UAE · Parfumeur</small></div>
         </a>
         <nav class="nav" id="nav" aria-label="Primary navigation">
-          <a href="index.html#collection">Collection</a>
-          <a href="index.html#ritual">Ritual</a>
-          <a href="index.html#atelier">Atelier</a>
-          <a href="index.html">About</a>
+          <a href="/index.html#collection">Collection</a>
+          <a href="/index.html#ritual">Ritual</a>
+          <a href="/index.html#atelier">Atelier</a>
+          <a href="/index.html">About</a>
         </nav>
         <div class="header__icons">
           <button class="icon-btn" type="button" aria-label="Search">
@@ -73,7 +76,7 @@
       <div class="wrap">
         <div class="footer__grid">
           <div class="footer__brand">
-            <a class="logo" href="index.html" aria-label="Arabian Mist UAE — home">
+            <a class="logo" href="/index.html" aria-label="Arabian Mist UAE — home">
               <div class="logo__mark" aria-hidden="true">AM</div>
               <div class="logo__name">Arabian Mist<small>UAE · Parfumeur</small></div>
             </a>
@@ -82,28 +85,28 @@
           <div>
             <h4>Shop</h4>
             <ul>
-              <li><a href="index.html#collection">Extraits de Parfum</a></li>
-              <li><a href="index.html#collection">Discovery sets</a></li>
-              <li><a href="index.html#collection">Body veils</a></li>
-              <li><a href="index.html#collection">Gift wrapping</a></li>
+              <li><a href="/index.html#collection">Extraits de Parfum</a></li>
+              <li><a href="/index.html#collection">Discovery sets</a></li>
+              <li><a href="/index.html#collection">Body veils</a></li>
+              <li><a href="/index.html#collection">Gift wrapping</a></li>
             </ul>
           </div>
           <div>
             <h4>House</h4>
             <ul>
-              <li><a href="index.html#atelier">The atelier</a></li>
-              <li><a href="index.html#feature">Our ingredients</a></li>
-              <li><a href="index.html#ritual">The ritual</a></li>
-              <li><a href="index.html">Journal</a></li>
+              <li><a href="/index.html#atelier">The atelier</a></li>
+              <li><a href="/index.html#collection">Our ingredients</a></li>
+              <li><a href="/index.html#ritual">The ritual</a></li>
+              <li><a href="/index.html">Journal</a></li>
             </ul>
           </div>
           <div>
             <h4>Care</h4>
             <ul>
-              <li><a href="index.html#atelier">Delivery &amp; returns</a></li>
-              <li><a href="index.html">Track order</a></li>
+              <li><a href="/index.html#atelier">Delivery &amp; returns</a></li>
+              <li><a href="/index.html">Track order</a></li>
               <li><a href="https://wa.me/971544224930" target="_blank" rel="noopener">Contact on WhatsApp</a></li>
-              <li><a href="index.html">FAQ</a></li>
+              <li><a href="/index.html">FAQ</a></li>
             </ul>
           </div>
         </div>
@@ -116,9 +119,9 @@
 
     <div class="toast" id="toast" role="status" aria-live="polite"></div>
 
-    <!-- catalog (reused) → PDP data seam → renderer -->
-    <script src="data/products.js?v=2"></script>
-    <script src="data/pdp-content.js?v=1"></script>
-    <script src="product-page.js?v=2"></script>
+    <!-- catalog (reused) → PDP data seam → renderer (root-absolute so /products/<slug> works) -->
+    <script src="/data/products.js?v=2"></script>
+    <script src="/data/pdp-content.js?v=1"></script>
+    <script src="/product-page.js?v=3"></script>
   </body>
 </html>
