@@ -34,7 +34,7 @@
 
   /* Layout */
   --page-x:        clamp(1.25rem, 6vw, 6rem);
-  --section-y:     clamp(4.5rem, 9vw, 8rem);
+  --section-y:     clamp(6rem, 10.5vw, 10rem);
   --section-gap:   clamp(2rem, 5vw, 5rem);
   --header-h:      clamp(3.8rem, 7vw, 4.8rem);
   --header-offset: clamp(6.5rem, 9vw, 8rem); /* notice + header */
