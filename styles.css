@@ -857,7 +857,6 @@ section[id] {
 /* Product cards */
 .product-card {
   background: var(--porcelain);
-  border: 1px solid var(--line);
   cursor: pointer;
   display: flex;
   flex-direction: column;
