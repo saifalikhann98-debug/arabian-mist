@@ -832,10 +832,14 @@ section[id] {
 }
 
 .load-more-btn {
+  align-items: center;
   background: transparent;
   border: 1px solid var(--line);
   color: var(--ink);
   cursor: pointer;
+  display: inline-flex;
+  justify-content: center;
+  text-decoration: none;
   font-size: 0.72rem;
   font-weight: 700;
   letter-spacing: 0.16em;

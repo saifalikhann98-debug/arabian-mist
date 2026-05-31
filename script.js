@@ -123,9 +123,9 @@ const renderProducts = (page = 1) => {
   const cards = visible.map(renderProductCard).join("");
   const loadMore = hasMore
     ? `<div class="product-grid-footer">
-         <button class="load-more-btn" type="button" data-load-more>
-           Load more — ${remaining} remaining
-         </button>
+         <a class="load-more-btn" href="/collection">
+           View all ${PRODUCTS.length} fragrances &rarr;
+         </a>
        </div>`
     : "";
 
