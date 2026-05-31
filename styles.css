@@ -4,9 +4,9 @@
 :root {
   /* Color palette */
   --ink:        #0e0d0b;
-  --paper:      #f5ead6;
-  --porcelain:  #faf3e4;
-  --linen:      #ede2cc;
+  --paper:      #ffffff;
+  --porcelain:  #ffffff;
+  --linen:      #f3f2f0;
   --smoke:      #5a5044;       /* 5.6:1 on porcelain ✓ */
   --gold:       #b8924a;
   --deep-gold:  #7a5e28;       /* 6.2:1 on light bg — safe for small text */
@@ -183,7 +183,7 @@ section[id] {
 .site-header.is-scrolled {
   backdrop-filter: blur(20px);
   -webkit-backdrop-filter: blur(20px);
-  background: rgba(250, 243, 228, 0.97);
+  background: rgba(255, 255, 255, 0.97);
   border-bottom: 1px solid rgba(14, 13, 11, 0.07);
   box-shadow: var(--shadow-md);
 }
