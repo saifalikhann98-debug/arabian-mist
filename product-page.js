@@ -149,7 +149,7 @@ const BUSINESS_WHATSAPP = '971544224930'; // <-- store WhatsApp number (digits o
         '<button class="btn btn--order" id="orderBtn">' + ICON.wa + ' Order on WhatsApp</button>' +
       '</div>' +
       '<div class="assure">' +
-        '<div>' + ICON.truck + '<b>UAE delivery</b><small>Complimentary above AED 350</small></div>' +
+        '<div>' + ICON.truck + '<b>UAE delivery</b><small>Complimentary above AED 150</small></div>' +
         '<div>' + ICON.gift + '<b>Keepsake box</b><small>Free samples &amp; note card</small></div>' +
         '<div>' + ICON.leaf + '<b>Small batch</b><small>Matured &amp; finished by hand</small></div>' +
       '</div>' +

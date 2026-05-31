@@ -62,7 +62,7 @@ function parseAed(v) {
 
 /* ---------- shared copy (same for every product) ---------- */
 const SHARED_ACCORDIONS = {
-  delivery: 'Wrapped in a rigid keepsake box with complimentary samples and a signature note card. Complimentary UAE delivery on orders above AED 350. Dispatched within 1–2 working days.',
+  delivery: 'Wrapped in a rigid keepsake box with complimentary samples and a signature note card. Complimentary UAE delivery on orders above AED 150. Dispatched within 1–2 working days.',
   returns: 'Unopened bottles accepted within 14 days of delivery. Contact us via WhatsApp to arrange a return or exchange.',
 };
 
