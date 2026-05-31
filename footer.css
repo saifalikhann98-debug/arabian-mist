@@ -1,0 +1,66 @@
+/* ============================================================
+   Arabian Mist UAE — shared site footer (used on EVERY page)
+   Self-contained: hardcoded colours + its own layout/font so it
+   renders identically regardless of the page's main stylesheet.
+   Loaded after the page CSS on index.html, collection.html, product.html.
+   ============================================================ */
+.site-footer {
+  background: #15120D;            /* ink */
+  color: #F7F2E9;                 /* ivory */
+  font-family: 'Jost', 'Inter', system-ui, -apple-system, sans-serif;
+}
+.site-footer__inner {
+  max-width: 1280px;
+  margin: 0 auto;
+  padding: 70px clamp(1.25rem, 6vw, 2.5rem) 40px;
+}
+.site-footer__grid {
+  display: grid;
+  grid-template-columns: 1.5fr 1fr 1fr 1fr;
+  gap: 40px;
+}
+.site-footer a { color: inherit; text-decoration: none; }
+
+.site-footer__logo { display: inline-block; }
+.site-footer__logo img {
+  height: clamp(4.2rem, 7vw, 5.4rem);
+  width: auto; display: block;
+  filter: invert(1);              /* black line-art logo -> white on dark */
+}
+.site-footer__brand p {
+  font-size: 13.5px; line-height: 1.65;
+  color: rgba(247, 242, 233, .6);
+  margin: 18px 0 0; max-width: 34ch;
+}
+.site-footer__social {
+  display: inline-flex; margin-top: 18px;
+  color: rgba(247, 242, 233, .55);
+  transition: color .2s;
+}
+.site-footer__social:hover { color: #F7F2E9; }
+
+.site-footer h4 {
+  font-size: 11px; letter-spacing: .24em; text-transform: uppercase;
+  color: #D8BE8C;                 /* gold-soft */
+  font-weight: 600; margin: 0 0 18px;
+}
+.site-footer ul { list-style: none; padding: 0; margin: 0; display: flex; flex-direction: column; gap: 11px; }
+.site-footer li a { font-size: 13.5px; color: rgba(247, 242, 233, .72); transition: color .2s; }
+.site-footer li a:hover { color: #F7F2E9; }
+
+.site-footer__bottom {
+  display: flex; justify-content: space-between; align-items: center;
+  gap: 16px; flex-wrap: wrap;
+  margin-top: 54px; padding-top: 24px;
+  border-top: 1px solid rgba(216, 190, 140, .16);
+  font-size: 11.5px; letter-spacing: .06em; color: rgba(247, 242, 233, .5);
+}
+.site-footer__bottom span { margin: 0; }
+
+@media (max-width: 760px) {
+  .site-footer__grid { grid-template-columns: 1fr 1fr; gap: 32px 28px; }
+  .site-footer__brand { grid-column: 1 / -1; }
+}
+@media (max-width: 480px) {
+  .site-footer__grid { grid-template-columns: 1fr; }
+}
