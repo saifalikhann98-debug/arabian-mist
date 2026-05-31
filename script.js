@@ -258,11 +258,10 @@ productGrid.addEventListener("click", (e) => {
     setTimeout(() => { window.location.href = whatsAppUrl(p); }, 480);
     return;
   }
-  // Card click → scroll to detail
+  // Card click → open the product detail page
   const card = e.target.closest(".product-card");
   if (!card) return;
-  const p = PRODUCTS.find((x) => x.id === card.dataset.productId);
-  if (p) selectProduct(p);
+  window.location.href = "product.html?slug=" + encodeURIComponent(card.dataset.productId);
 });
 
 productGrid.addEventListener("keydown", (e) => {
@@ -271,8 +270,7 @@ productGrid.addEventListener("keydown", (e) => {
   const card = e.target.closest(".product-card");
   if (!card) return;
   e.preventDefault();
-  const p = PRODUCTS.find((x) => x.id === card.dataset.productId);
-  if (p) selectProduct(p);
+  window.location.href = "product.html?slug=" + encodeURIComponent(card.dataset.productId);
 });
 
 /* ─────────────────────────────────────────────────────────

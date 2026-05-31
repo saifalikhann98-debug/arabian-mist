@@ -1,0 +1,124 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Arabian Mist UAE | Product</title>
+    <meta name="description" content="Arabian Mist UAE — a luxury extrait de parfum. Explore the scent pyramid, choose your size, and order on WhatsApp." />
+
+    <!--
+      ============================================================
+      Arabian Mist UAE — Product Detail Page (data-driven, vanilla)
+      ------------------------------------------------------------
+      Renders ANY catalog product (data/products.js) via the data
+      seam in data/pdp-content.js → toPdpProduct().
+
+      • WhatsApp order number:  product-page.js → BUSINESS_WHATSAPP
+      • Product data source:    data/pdp-content.js → toPdpProduct()
+                                (swap for a backend/CMS fetch later)
+      • URL:  /products/<slug>  (Vercel rewrite) or ?slug=<slug> (local)
+      See PDP_NOTES.md for details.
+      ============================================================
+    -->
+
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600;700&family=Jost:wght@300;400;500;600&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="product.css?v=1" />
+  </head>
+  <body>
+    <a class="skip-link" href="#pdp">Skip to product</a>
+
+    <div class="announce">Complimentary UAE delivery on orders above <b>AED 350</b></div>
+
+    <header class="header">
+      <div class="wrap header__inner">
+        <a class="logo" href="index.html" aria-label="Arabian Mist UAE — home">
+          <div class="logo__mark" aria-hidden="true">AM</div>
+          <div class="logo__name">Arabian Mist<small>UAE · Parfumeur</small></div>
+        </a>
+        <nav class="nav" id="nav" aria-label="Primary navigation">
+          <a href="index.html#collection">Collection</a>
+          <a href="index.html#ritual">Ritual</a>
+          <a href="index.html#atelier">Atelier</a>
+          <a href="index.html">About</a>
+        </nav>
+        <div class="header__icons">
+          <button class="icon-btn" type="button" aria-label="Search">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.2-3.2"/></svg>
+          </button>
+          <button class="icon-btn" type="button" aria-label="Account">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" aria-hidden="true"><circle cx="12" cy="8" r="4"/><path d="M4 20c0-4 4-6 8-6s8 2 8 6"/></svg>
+          </button>
+          <button class="menu-toggle" id="menuToggle" type="button" aria-label="Menu" aria-expanded="false">
+            <span></span><span></span><span></span>
+          </button>
+        </div>
+      </div>
+    </header>
+
+    <main>
+      <div class="wrap">
+        <nav class="crumbs" id="crumbs" aria-label="Breadcrumb"></nav>
+        <!-- gallery + buy box injected here -->
+        <div class="pdp" id="pdp"></div>
+      </div>
+
+      <!-- full-bleed dark sections injected here -->
+      <section class="pyramid" id="pyramid" aria-label="Scent pyramid"></section>
+      <section class="related" id="related" aria-label="You may also like"></section>
+    </main>
+
+    <footer class="footer">
+      <div class="wrap">
+        <div class="footer__grid">
+          <div class="footer__brand">
+            <a class="logo" href="index.html" aria-label="Arabian Mist UAE — home">
+              <div class="logo__mark" aria-hidden="true">AM</div>
+              <div class="logo__name">Arabian Mist<small>UAE · Parfumeur</small></div>
+            </a>
+            <p>A UAE fragrance house shaped by oud, amber, saffron, and rose — composed for the quiet drama of desert evenings.</p>
+          </div>
+          <div>
+            <h4>Shop</h4>
+            <ul>
+              <li><a href="index.html#collection">Extraits de Parfum</a></li>
+              <li><a href="index.html#collection">Discovery sets</a></li>
+              <li><a href="index.html#collection">Body veils</a></li>
+              <li><a href="index.html#collection">Gift wrapping</a></li>
+            </ul>
+          </div>
+          <div>
+            <h4>House</h4>
+            <ul>
+              <li><a href="index.html#atelier">The atelier</a></li>
+              <li><a href="index.html#feature">Our ingredients</a></li>
+              <li><a href="index.html#ritual">The ritual</a></li>
+              <li><a href="index.html">Journal</a></li>
+            </ul>
+          </div>
+          <div>
+            <h4>Care</h4>
+            <ul>
+              <li><a href="index.html#atelier">Delivery &amp; returns</a></li>
+              <li><a href="index.html">Track order</a></li>
+              <li><a href="https://wa.me/971544224930" target="_blank" rel="noopener">Contact on WhatsApp</a></li>
+              <li><a href="index.html">FAQ</a></li>
+            </ul>
+          </div>
+        </div>
+        <div class="footer__bottom">
+          <span>© 2026 Arabian Mist UAE. Crafted in the UAE.</span>
+          <span>Privacy · Terms</span>
+        </div>
+      </div>
+    </footer>
+
+    <div class="toast" id="toast" role="status" aria-live="polite"></div>
+
+    <!-- catalog (reused) → PDP data seam → renderer -->
+    <script src="data/products.js?v=2"></script>
+    <script src="data/pdp-content.js?v=1"></script>
+    <script src="product-page.js?v=2"></script>
+  </body>
+</html>
