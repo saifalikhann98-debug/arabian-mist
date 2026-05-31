@@ -12,7 +12,7 @@ const PRODUCTS = [
       base: "Oud, amber, and polished woods leave a dark, memorable trail.",
     },
     description: "A lavish oud extrait threaded with saffron, black vanilla, and polished woods. Dark, plush, and made for evening.",
-    image: "assets/card-arabian-nights.png",
+    image: "assets/card-arabian-nights.jpg",
   },
   {
     id: "blue-mist",
@@ -27,7 +27,7 @@ const PRODUCTS = [
       base: "Cool woods and soft amber settle into a refined daily trail.",
     },
     description: "A luminous fresh perfume with bergamot, cool woods, blue musk, and a soft mineral trail. Clean, radiant, and deeply wearable.",
-    image: "assets/card-blue-mist.png",
+    image: "assets/card-blue-mist.jpg",
   },
   {
     id: "noor-al-ain",
@@ -42,7 +42,7 @@ const PRODUCTS = [
       base: "Ambergris, suede, and musk add a quiet nocturnal finish.",
     },
     description: "A nocturnal rose extrait with cacao, ambergris, and soft suede. Romantic, textured, and quietly dramatic.",
-    image: "assets/card-noor-al-ain.png",
+    image: "assets/card-noor-al-ain.jpg",
   },
   {
     id: "saffron-veil",
@@ -57,7 +57,7 @@ const PRODUCTS = [
       base: "Amber and skin musk form a smooth, lasting veil.",
     },
     description: "Golden saffron wrapped around jasmine, amber, and a soft musky drydown.",
-    image: "assets/product-amber-lifestyle.png",
+    image: "assets/product-amber-lifestyle.jpg",
   },
   {
     id: "oud-royale",
@@ -72,7 +72,7 @@ const PRODUCTS = [
       base: "Cambodian oud, amber resin, and musk linger with authority.",
     },
     description: "A composed oud extrait with leather, patchouli, amber resin, and quiet royal depth.",
-    image: "assets/product-oud-lifestyle.png",
+    image: "assets/product-oud-lifestyle.jpg",
   },
   {
     id: "desert-rose",
@@ -87,7 +87,7 @@ const PRODUCTS = [
       base: "Musk and sandalwood make the trail smooth and intimate.",
     },
     description: "A soft rose perfume with peppered brightness, sandalwood, and elegant musk.",
-    image: "assets/product-rose-lifestyle.png",
+    image: "assets/product-rose-lifestyle.jpg",
   },
   {
     id: "amber-dunes",
@@ -102,7 +102,7 @@ const PRODUCTS = [
       base: "Amber, labdanum, and musk create a deep golden finish.",
     },
     description: "A warm amber gourmand shaped by tonka, vanilla, labdanum, and soft spice.",
-    image: "assets/product-romantic-lifestyle.png",
+    image: "assets/product-romantic-lifestyle.jpg",
   },
   {
     id: "white-bakhoor",
@@ -117,7 +117,7 @@ const PRODUCTS = [
       base: "White musk and sandalwood leave a clean smoky trail.",
     },
     description: "A clean incense perfume with iris, white musk, sandalwood, and soft smoke.",
-    image: "assets/product-fresh-lifestyle.png",
+    image: "assets/product-fresh-lifestyle.jpg",
   },
   {
     id: "midnight-majlis",
@@ -132,7 +132,7 @@ const PRODUCTS = [
       base: "Amber, cedar, and musk create a long after-dark trail.",
     },
     description: "Black tea, oud, incense, and amber composed for late evenings.",
-    image: "assets/card-arabian-nights.png",
+    image: "assets/card-arabian-nights.jpg",
   },
   {
     id: "golden-musk",
@@ -147,7 +147,7 @@ const PRODUCTS = [
       base: "Amber and pale woods give the scent gentle longevity.",
     },
     description: "A radiant musk with neroli, orange blossom, amber, and pale woods.",
-    image: "assets/card-blue-mist.png",
+    image: "assets/card-blue-mist.jpg",
   },
   {
     id: "rose-oud-silk",
@@ -162,7 +162,7 @@ const PRODUCTS = [
       base: "Silk musk and amber woods soften the drydown.",
     },
     description: "Rose and oud balanced with saffron, silk musk, and amber woods.",
-    image: "assets/card-noor-al-ain.png",
+    image: "assets/card-noor-al-ain.jpg",
   },
   {
     id: "citrus-souk",
@@ -177,7 +177,7 @@ const PRODUCTS = [
       base: "Cedar, musk, and amber add a clean drydown.",
     },
     description: "A crisp citrus perfume with mint, neroli, cedar, and soft amber.",
-    image: "assets/product-amber-lifestyle.png",
+    image: "assets/product-amber-lifestyle.jpg",
   },
   {
     id: "velvet-saffron",
@@ -192,7 +192,7 @@ const PRODUCTS = [
       base: "Amber woods and musk make the finish warm and smooth.",
     },
     description: "A velvet-rich saffron scent with plum, rose, suede, and amber woods.",
-    image: "assets/product-oud-lifestyle.png",
+    image: "assets/product-oud-lifestyle.jpg",
   },
   {
     id: "pearl-incense",
@@ -207,7 +207,7 @@ const PRODUCTS = [
       base: "Pearl musk and sandalwood settle close to skin.",
     },
     description: "Frankincense, iris, jasmine, and pearl musk in a soft luminous structure.",
-    image: "assets/product-rose-lifestyle.png",
+    image: "assets/product-rose-lifestyle.jpg",
   },
   {
     id: "royal-amber",
@@ -222,7 +222,7 @@ const PRODUCTS = [
       base: "Amber, benzoin, and woods give a polished royal finish.",
     },
     description: "A resinous amber perfume with labdanum, myrrh, benzoin, and warm woods.",
-    image: "assets/product-romantic-lifestyle.png",
+    image: "assets/product-romantic-lifestyle.jpg",
   },
   {
     id: "misk-al-layl",
@@ -237,7 +237,7 @@ const PRODUCTS = [
       base: "Sandalwood and amber add warmth through the drydown.",
     },
     description: "A close-wearing night musk with violet, sandalwood, and soft amber.",
-    image: "assets/product-fresh-lifestyle.png",
+    image: "assets/product-fresh-lifestyle.jpg",
   },
   {
     id: "jasmine-dusk",
@@ -252,7 +252,7 @@ const PRODUCTS = [
       base: "Amberwood and musk create a soft dusk-colored trail.",
     },
     description: "Jasmine sambac, green tea, amberwood, and musk for a calm evening floral.",
-    image: "assets/card-blue-mist.png",
+    image: "assets/card-blue-mist.jpg",
   },
   {
     id: "black-vanilla-oud",
@@ -267,7 +267,7 @@ const PRODUCTS = [
       base: "Cedar, amber, and musk give the perfume structure.",
     },
     description: "Dark vanilla and oud with cardamom, cedar, amber, and a polished drydown.",
-    image: "assets/card-arabian-nights.png",
+    image: "assets/card-arabian-nights.jpg",
   },
   {
     id: "mirage-bloom",
@@ -282,7 +282,7 @@ const PRODUCTS = [
       base: "Musk and cedar keep the trail clean and elegant.",
     },
     description: "A luminous orange blossom scent with neroli, white florals, musk, and cedar.",
-    image: "assets/card-noor-al-ain.png",
+    image: "assets/card-noor-al-ain.jpg",
   },
   {
     id: "spiced-ambergris",
@@ -297,7 +297,7 @@ const PRODUCTS = [
       base: "Cedar, musk, and resin linger with soft spice.",
     },
     description: "Mineral ambergris, cardamom, cedar, musk, and resin for a refined warm trail.",
-    image: "assets/product-amber-lifestyle.png",
+    image: "assets/product-amber-lifestyle.jpg",
   },
   {
     id: "majestic-rose",
@@ -312,7 +312,7 @@ const PRODUCTS = [
       base: "Patchouli, amber, and musk ground the composition.",
     },
     description: "A full-bodied rose with raspberry, geranium, patchouli, amber, and musk.",
-    image: "assets/product-oud-lifestyle.png",
+    image: "assets/product-oud-lifestyle.jpg",
   },
   {
     id: "silver-oud",
@@ -327,7 +327,7 @@ const PRODUCTS = [
       base: "Oud, mineral musk, and amber last with quiet force.",
     },
     description: "A crisp oud scent with cypress, incense, mineral musk, and amber.",
-    image: "assets/product-rose-lifestyle.png",
+    image: "assets/product-rose-lifestyle.jpg",
   },
   {
     id: "honeyed-oud",
@@ -342,7 +342,7 @@ const PRODUCTS = [
       base: "Oud, amber, and musk finish smooth and rich.",
     },
     description: "Honeyed oud with tobacco leaf, rose, cinnamon, amber, and warm musk.",
-    image: "assets/product-romantic-lifestyle.png",
+    image: "assets/product-romantic-lifestyle.jpg",
   },
   {
     id: "cashmere-mist",
@@ -357,7 +357,7 @@ const PRODUCTS = [
       base: "Pale woods and amber leave a calm elegant trail.",
     },
     description: "A soft cashmere musk with iris, violet leaf, pale woods, and amber.",
-    image: "assets/product-fresh-lifestyle.png",
+    image: "assets/product-fresh-lifestyle.jpg",
   },
   {
     id: "sultan-leather",
@@ -372,6 +372,6 @@ const PRODUCTS = [
       base: "Amber, smoke, and musk create a powerful lasting finish.",
     },
     description: "A tailored leather extrait with oud, saffron, rose, amber, smoke, and musk.",
-    image: "assets/card-arabian-nights.png",
+    image: "assets/card-arabian-nights.jpg",
   },
 ];

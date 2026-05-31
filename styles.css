@@ -1371,13 +1371,25 @@ details p {
   }
 
   .hero-shade {
-    background: linear-gradient(180deg, rgba(5, 3, 2, 0.35) 0%, rgba(5, 3, 2, 0.0) 25%,
-                rgba(5, 3, 2, 0.55) 75%, rgba(5, 3, 2, 0.88) 100%);
+    /* Bottle tops stay visible up top; darkness ramps in from ~40% so the
+       headline, copy, and buttons all sit on a legible base. */
+    background: linear-gradient(180deg,
+                rgba(5, 3, 2, 0.55) 0%,
+                rgba(5, 3, 2, 0.20) 16%,
+                rgba(5, 3, 2, 0.42) 38%,
+                rgba(5, 3, 2, 0.78) 54%,
+                rgba(5, 3, 2, 0.93) 100%);
   }
 
   .hero h1 {
     font-size: clamp(2.8rem, 8vw, 5rem); /* was 18vw — absurdly large on tablet */
     max-width: none;
+  }
+
+  /* Legibility insurance: hero text can fall over bright bottle imagery */
+  .hero h1,
+  .hero-copy {
+    text-shadow: 0 1px 14px rgba(5, 3, 2, 0.55);
   }
 
   .hero-content {
