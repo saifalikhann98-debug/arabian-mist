@@ -188,6 +188,11 @@ section[id] {
   box-shadow: var(--shadow-md);
 }
 
+/* ── Brand logo image (replaces the old AM text lockup) ── */
+.brand-logo { height: clamp(2.6rem, 5.2vw, 3.3rem); width: auto; display: block; transition: filter 400ms ease; }
+.site-header:not(.is-scrolled) .brand-logo { filter: invert(1); }   /* white over the dark hero */
+.footer-brand .brand-logo { filter: invert(1); height: clamp(4.5rem, 7vw, 6rem); }  /* white on the dark footer */
+
 .brand { color: var(--wine); }
 
 .logo-lockup {
