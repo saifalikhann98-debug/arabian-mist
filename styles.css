@@ -1263,6 +1263,8 @@ details p {
 .footer-nav a:hover {
   color: #f5ead6;
 }
+.footer-nav { align-items: center; }
+.footer-ig { display: inline-flex; }
 
 .footer-bottom {
   align-items: center;
