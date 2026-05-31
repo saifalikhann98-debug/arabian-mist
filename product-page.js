@@ -89,7 +89,7 @@ const BUSINESS_WHATSAPP = '971544224930'; // <-- store WhatsApp number (digits o
   if (crumbs) {
     crumbs.innerHTML =
       '<a href="/index.html">Home</a><span>/</span>' +
-      '<a href="/index.html#collection">Collection</a><span>/</span>' + esc(P.name);
+      '<a href="/collection">Collection</a><span>/</span>' + esc(P.name);
   }
 
   /* ---------- state ---------- */
@@ -280,7 +280,7 @@ const BUSINESS_WHATSAPP = '971544224930'; // <-- store WhatsApp number (digits o
     '<div class="wrap">' +
       '<div class="related__top">' +
         '<div><div class="eyebrow">The signature trio</div><h2>You may also like</h2></div>' +
-        '<a class="related__link" href="/index.html#collection">View the collection →</a>' +
+        '<a class="related__link" href="/collection">View the collection →</a>' +
       '</div>' +
       '<div class="cards" id="relatedCards">' +
         P.related.map((r) =>

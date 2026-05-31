@@ -1,0 +1,84 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>The Collection | Arabian Mist UAE</title>
+    <meta name="description" content="Browse the full Arabian Mist UAE collection — oud, amber, saffron, rose and more, composed for the drama of desert evenings." />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500;600;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="/styles.css?v=4" />
+  </head>
+  <body>
+    <div class="notice">Complimentary UAE delivery on orders above AED 350</div>
+
+    <!-- solid (scrolled) header — there is no hero on this page -->
+    <header class="site-header is-scrolled" data-header>
+      <a class="brand" href="/index.html" aria-label="Arabian Mist UAE home">
+        <img class="brand-logo" src="/assets/am-logo.png?v=1" alt="Arabian Mist UAE" />
+      </a>
+
+      <nav class="nav-links" aria-label="Primary navigation" data-nav>
+        <a href="/collection" aria-current="page">Collection</a>
+        <a href="/index.html#ritual">Ritual</a>
+        <a href="/index.html#details">Details</a>
+        <a href="/index.html#atelier">Atelier</a>
+      </nav>
+
+      <div class="header-actions">
+        <button class="icon-button" type="button" aria-label="Search fragrances">
+          <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true">
+            <circle cx="6.5" cy="6.5" r="4.5"/>
+            <line x1="10" y1="10" x2="14" y2="14"/>
+          </svg>
+        </button>
+        <button class="icon-button" type="button" aria-label="Shopping bag">
+          <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true">
+            <path d="M3 5.5h10L11.8 13H4.2L3 5.5z"/>
+            <path d="M6 5.5V4a2 2 0 0 1 4 0v1.5"/>
+          </svg>
+        </button>
+        <button class="menu-button" type="button" aria-label="Open menu" aria-expanded="false" data-menu>
+          <span></span>
+          <span></span>
+        </button>
+      </div>
+    </header>
+
+    <main id="top">
+      <section class="collection-section" id="collection" aria-labelledby="collection-heading">
+        <div class="collection-header">
+          <h2 id="collection-heading">The Collection</h2>
+          <span data-collection-count></span>
+        </div>
+        <div class="product-grid" data-product-grid></div>
+      </section>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        <div class="footer-top">
+          <a class="footer-brand" href="/index.html" aria-label="Arabian Mist UAE home">
+            <img class="brand-logo footer-logo" src="/assets/am-logo.png?v=1" alt="Arabian Mist UAE" />
+          </a>
+          <nav class="footer-nav" aria-label="Footer navigation">
+            <a href="/collection">Collection</a>
+            <a href="/index.html#ritual">Ritual</a>
+            <a href="/index.html#details">Product</a>
+            <a href="/index.html#atelier">Atelier</a>
+          </nav>
+        </div>
+        <div class="footer-bottom">
+          <p class="footer-legal">© 2026 Arabian Mist UAE. All rights reserved.</p>
+          <p class="footer-tagline">Crafted in the UAE.</p>
+        </div>
+      </div>
+    </footer>
+
+    <div class="toast" role="status" aria-live="polite" data-toast></div>
+
+    <script src="/data/products.js?v=3"></script>
+    <script src="/collection.js?v=1"></script>
+  </body>
+</html>
